@@ -15,9 +15,9 @@ st.set_page_config(
 )
 
 
-# ============================================================
+
 # CATÁLOGO DE VEÍCULOS
-# ============================================================
+
 
 CATALOGO = {
     "Chevrolet Onix Plus": {
@@ -58,9 +58,9 @@ ROTULOS = {
     for nome, veiculo in CATALOGO.items()
 }
 
-# ============================================================
+
 # ESTADO DA SESSÃO (session_state)
-# ============================================================
+
 
 if "pedido" not in st.session_state:
     st.session_state.pedido = []          # itens do pedido de venda em andamento
@@ -78,9 +78,9 @@ if "estoque" not in st.session_state:
     }
 
 
-# ============================================================
+
 # FUNÇÕES AUXILIARES
-# ============================================================
+
 
 def calcular_parcela(valor_financiado: float, taxa_juros: float, n_parcelas: int) -> float:
     """Calcula o valor da parcela (PMT) de um financiamento.
@@ -133,9 +133,9 @@ def itens_vendidos() -> pd.DataFrame:
     return pd.DataFrame(registros)
 
 
-# ============================================================
+
 # SIDEBAR — CONFIGURAÇÕES E FILTROS
-# ============================================================
+
 
 with st.sidebar:
     st.markdown("## 🚗 AutoVia")
@@ -185,9 +185,9 @@ with st.sidebar:
         f"{datetime.now().strftime('%d/%m/%Y %H:%M')}"
     )
 
-# ============================================================
+
 # CABEÇALHO
-# ============================================================
+
 
 st.title("Concessionária AutoVia")
 st.caption(
@@ -202,25 +202,25 @@ if st.session_state.flash:
     getattr(st, tipo)(mensagem)
     st.session_state.flash = None
 
-# ============================================================
+
 # ABAS DO DASHBOARD
-# ============================================================
+
 
 aba_venda, aba_estoque, aba_relatorios = st.tabs(
     ["🛒 Ponto de Venda", "🚘 Estoque", "📊 Relatórios"]
 )
 
-# ============================================================
+
 # ABA 1 — PONTO DE VENDA
-# ============================================================
+
 
 with aba_venda:
 
     col1, col2 = st.columns([1.25, 1], gap="large")
 
-    # ------------------------------------------------------------
+    
     # COLUNA 1 — SELEÇÃO DE VEÍCULOS E PEDIDO
-    # ------------------------------------------------------------
+    
     with col1:
 
         st.subheader("Seleção de Veículos")
@@ -374,9 +374,9 @@ with aba_venda:
                 "**Adicionar ao Pedido**."
             )
 
-    # ------------------------------------------------------------
+    
     # COLUNA 2 — FINANCIAMENTO E FECHAMENTO
-    # ------------------------------------------------------------
+    
     with col2:
 
         st.subheader("Financiamento e Fechamento")
@@ -526,9 +526,9 @@ with aba_venda:
                 )
                 st.rerun()
 
-# ============================================================
+
 # ABA 2 — ESTOQUE
-# ============================================================
+
 
 with aba_estoque:
 
@@ -644,9 +644,9 @@ with aba_estoque:
             lista = ", ".join(esgotados["Veículo"].tolist())
             st.error(f"**Sem unidades disponíveis:** {lista}")
 
-# ============================================================
+
 # ABA 3 — RELATÓRIOS
-# ============================================================
+
 
 with aba_relatorios:
 
@@ -802,9 +802,9 @@ with aba_relatorios:
             width="stretch",
         )
 
-# ============================================================
+
 # RODAPÉ
-# ============================================================
+
 
 st.divider()
 st.caption(
